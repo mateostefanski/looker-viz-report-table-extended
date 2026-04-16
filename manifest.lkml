@@ -12,6 +12,6 @@ constant: VIS_ID {
 
 visualization: {
   id: "@{VIS_ID}"
-  url: "top_n_table.js"
+  url: "https://cdn.jsdelivr.net/gh/mateostefanski/looker-viz-report-table-extended@main/top_n_table.js"
   label: "@{VIS_LABEL}"
 }
