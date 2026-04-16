@@ -11,16 +11,24 @@ const themes = {
 }
 
 const removeStyles = async function() {
-  const links = document.getElementsByTagName('link')
-  while (links[0]) links[0].parentNode.removeChild(links[0])
-  Object.keys(themes).forEach(async (theme) => await themes[theme].unuse() )
+  try {
+    const links = document.querySelectorAll('link[rel="stylesheet"]')
+    links.forEach(link => {
+      try { link.parentNode.removeChild(link) } catch(e) {}
+    })
+  } catch(e) {}
+  Object.keys(themes).forEach(async (theme) => {
+    try { await themes[theme].unuse() } catch(e) {}
+  })
 }
 
 const loadStylesheet = function(link) {
-  const linkElement = document.createElement('link')
-  linkElement.setAttribute('rel', 'stylesheet')
-  linkElement.setAttribute('href', link)
-  document.getElementsByTagName('head')[0].appendChild(linkElement)
+  try {
+    const linkElement = document.createElement('link')
+    linkElement.setAttribute('rel', 'stylesheet')
+    linkElement.setAttribute('href', link)
+    document.getElementsByTagName('head')[0].appendChild(linkElement)
+  } catch(e) {}
 }
 
 /**
